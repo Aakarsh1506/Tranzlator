@@ -1,16 +1,103 @@
-# React + Vite
+# 🌐 Tranzlator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack language translation application built with React and Express that uses the MyMemory Translation API to translate text between multiple languages in real time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- 🌍 Translate text between 10 major global languages:
+  - English
+  - Hindi
+  - Spanish
+  - French
+  - German
+  - Chinese
+  - Arabic
+  - Portuguese
+  - Russian
+  - Japanese
+- 🔄 One-click language swap (including translated text)
+- 📋 Copy translated text to clipboard
+- 🗑️ Clear input and output instantly
+- 🎨 Modern dark-themed user interface
+- 📱 Fully responsive design for desktop and mobile
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+- React
+- CSS
+- Vite
+
+### Backend
+- Node.js
+- Express
+
+###  Translation API
+- MyMemory Translation API
+
+---
+
+## ▶️ Running the Project
+
+### Start the Backend
+
+```bash
+cd server
+node index.js
+```
+
+### Start the Frontend
+
+Open another terminal and run:
+
+```bash
+npm run dev
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+TRANZLATOR/
+│
+├── server/
+│   ├── routes/
+│   │   └── translate.js
+│   ├── .env
+│   ├── .gitignore
+│   ├── index.js
+│   ├── package.json
+│   └── package-lock.json
+│
+├── src/
+│   ├── components/
+│   │   ├── Tranzlator.jsx
+│   │   └── Tranzlator.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md
+```
+
+---
+
+## 📖 How It Works
+
+1. Enter the text you want to translate.
+2. Select the source language.
+3. Select the target language.
+4. Click **Translate** to receive the translated text using the MyMemory Translation API.
+5. Use the **Swap** button to interchange the source and target languages along with their respective text.
+6. Copy the translated text or clear both fields whenever required.
