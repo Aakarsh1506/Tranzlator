@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f0f1a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.tranzlator-container {
+  max-width: 1000px; /* Increased container width to accommodate larger boxes */
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* Header */
+.tranzlator-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.tranzlator-heading {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #7f5af0, #2cb67d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tranzlator-subtext {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #a0a0b0;
+}
+
+/* Body */
+.tranzlator-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Cards row */
+.tranzlator-cards {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Increased padding and sizing for input/output cards */
+.input-card,
+.output-card {
+  flex: 1;
+  background: #1a1a2e;
+  border: 1px solid #2e2e4e;
+  border-radius: 16px;
+  padding: 32px; /* Increased from 24px */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;    /* Slightly more breathing room */
+}
+
+/* Label */
+.card-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7f5af0;
+}
+
+/* Select - Made semi-transparent using rgba background */
+.language-select {
+  background: rgba(15, 15, 26, 0.4); /* 40% opacity background */
+  color: #ffffff;
+  border: 1px solid rgba(58, 58, 92, 0.6);
+  border-radius: 8px;
+  padding: 12px 16px; /* Slightly increased padding */
+  font-size: 1rem;     /* Slightly larger text */
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.language-select:focus {
+  border-color: #7f5af0;
+  background: rgba(15, 15, 26, 0.7);
+}
+
+/* Textarea - Increased overall height */
+.text-area {
+  background: #0f0f1a;
+  color: #ffffff;
+  border: 1px solid #3a3a5c;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 1rem;     /* Slightly larger font size */
+  resize: none;
+  height: 240px;       /* Increased height from 180px */
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.text-area:focus {
+  border-color: #7f5af0;
+}
+
+.text-area[readonly] {
+  color: #a0a0b0;
+  cursor: default;
+}
+
+/* Buttons Controls Wrapper - Aligns swap and translate button on the same line */
+.controls-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Translate button - Changed from gradient to a solid, sleek purple */
+.translate-button {
+  background: #7f5af0; 
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.translate-button:hover {
+  background: #6a46db; /* Slightly darker shade on hover instead of opacity */
+  transform: translateY(-1px);
+}
+
+.translate-button:active {
+  transform: translateY(0);
+}
+
+/* Swap Wrapper adjusted for the new layout flow if needed */
+.swap-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swap-button {
+  background: #1a1a2e;
+  border: 1px solid #3a3a5c;
+  color: #7f5af0;
+  border-radius: 50%;
+  width: 46px; /* Slightly bumped up size to match the bigger cards */
+  height: 46px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.swap-button:hover {
+  background: #7f5af0;
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+/* Responsive fixes for the new buttons row layout */
+@media (max-width: 600px) {
+  .tranzlator-cards {
+    flex-direction: column;
+  }
+
+  .tranzlator-heading {
+    font-size: 2rem;
+  }
+
+  .controls-wrapper {
+    flex-direction: column-reverse; /* stacks buttons cleanly on mobile */
+    gap: 16px;
+  }
+  
+  .translate-button {
+    width: 100%; /* Full width button on small screens for better UX */
+  }
+}
+
+.clear-button,
+.copy-button {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid #3a3a5c;
+  color: #a0a0b0;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.clear-button:hover,
+.copy-button:hover {
+  border-color: #7f5af0;
+  color: #ffffff;
+}
+
+.copy-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  text-align: center;
+}
