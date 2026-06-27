@@ -9,9 +9,57 @@ body {
   background: #0f0f1a;
   color: #ffffff;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Scrolling background ─── */
+.marquee-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.marquee-row {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee-scroll 60s linear infinite;
+  padding: 14px 0;
+  line-height: 1.6;
+}
+
+.marquee-row:nth-child(even) {
+  animation-direction: reverse;
+  animation-duration: 75s;
+}
+
+.marquee-row:nth-child(3n) {
+  animation-duration: 45s;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(127, 90, 240, 0.22);
+  user-select: none;
+  padding-right: 48px;
 }
 
 .tranzlator-container {
+  position: relative;
+  z-index: 1;
   max-width: 1000px; /* Increased container width to accommodate larger boxes */
   margin: 0 auto;
   padding: 48px 24px;
@@ -58,7 +106,8 @@ body {
 .input-card,
 .output-card {
   flex: 1;
-  background: #1a1a2e;
+  background: rgba(26, 26, 46, 0.82);
+  backdrop-filter: blur(6px);
   border: 1px solid #2e2e4e;
   border-radius: 16px;
   padding: 32px; /* Increased from 24px */
@@ -116,6 +165,40 @@ body {
 .text-area[readonly] {
   color: #a0a0b0;
   cursor: default;
+}
+
+/* Clear & Copy Buttons */
+.clear-button,
+.copy-button {
+  align-self: flex-end;
+  width: auto;
+  display: inline-block;
+  padding: 10px 22px;
+  background: #7f5af0;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.clear-button:hover,
+.copy-button:hover:not(:disabled) {
+  background: #6a46db;
+  transform: translateY(-1px);
+}
+
+.clear-button:active,
+.copy-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.copy-button:disabled {
+  background: #3a3a5c;
+  color: #8b8ba7;
+  cursor: not-allowed;
 }
 
 /* Buttons Controls Wrapper - Aligns swap and translate button on the same line */
@@ -177,50 +260,70 @@ body {
 
 /* Responsive fixes for the new buttons row layout */
 @media (max-width: 600px) {
-  .tranzlator-cards {
-    flex-direction: column;
+  .tranzlator-container {
+    padding: 24px 16px; /* less side padding on mobile */
+  }
+
+  .tranzlator-header {
+    margin-bottom: 28px; /* tighter header gap on mobile */
   }
 
   .tranzlator-heading {
     font-size: 2rem;
   }
 
-  .controls-wrapper {
-    flex-direction: column-reverse; /* stacks buttons cleanly on mobile */
+  .tranzlator-subtext {
+    font-size: 0.9rem;
+  }
+
+  .tranzlator-body {
+    gap: 20px; /* tighter gap between sections on mobile */
+  }
+
+  .tranzlator-cards {
+    flex-direction: column; /* stack cards vertically */
     gap: 16px;
   }
-  
+
+  .input-card,
+  .output-card {
+    padding: 20px; /* reduced padding on mobile */
+    gap: 14px;
+  }
+
+  .text-area {
+    height: 160px; /* shorter textarea on mobile */
+    font-size: 0.95rem;
+  }
+
+  .language-select {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  .controls-wrapper {
+    flex-direction: column-reverse; /* stacks buttons cleanly on mobile */
+    gap: 12px;
+  }
+
   .translate-button {
     width: 100%; /* Full width button on small screens for better UX */
+    padding: 14px 24px;
   }
-}
 
-.clear-button,
-.copy-button {
-  align-self: flex-end;
-  background: transparent;
-  border: 1px solid #3a3a5c;
-  color: #a0a0b0;
-  border-radius: 6px;
-  padding: 6px 16px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-}
+  .swap-button {
+    width: 52px; /* slightly bigger tap target on mobile */
+    height: 52px;
+    font-size: 1.4rem;
+  }
 
-.clear-button:hover,
-.copy-button:hover {
-  border-color: #7f5af0;
-  color: #ffffff;
-}
+  .clear-button,
+  .copy-button {
+    padding: 8px 20px; /* bigger tap target on mobile */
+    font-size: 0.9rem;
+  }
 
-.copy-button:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.error-message {
-  color: #ff6b6b;
-  font-size: 0.9rem;
-  text-align: center;
+  .marquee-text {
+    font-size: 0.75rem; /* smaller marquee text on mobile so it fits better */
+  }
 }
